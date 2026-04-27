@@ -49,7 +49,7 @@ const Page = (): React.ReactElement => {
 
       if (res.status === 200) {
         // Store user as JSON string in localStorage
-        localStorage.setItem("token", JSON.stringify(res.data.data.user));
+        localStorage.setItem("token", res.data.data.authData.token);
         // login(res.data.user);
 
         toast.success(res.data?.message || "Login successful!");

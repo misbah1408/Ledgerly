@@ -1,5 +1,4 @@
 import axios from "axios";
-console.log(process.env.API_URL);
 
 const api = axios.create({
   baseURL: process.env.NEXT_PUBLIC_API_URL,
@@ -8,7 +7,10 @@ const api = axios.create({
 
 // Request interceptor
 api.interceptors.request.use((config) => {
-  // Example: attach token
+  if (config.url?.startsWith("/auth/")) {
+    return config;
+  }
+
   const token = typeof window !== "undefined" 
     ? localStorage.getItem("token") 
     : null;
