@@ -2,7 +2,7 @@ import axios from "axios";
 
 const api = axios.create({
   baseURL: process.env.NEXT_PUBLIC_API_URL,
-  withCredentials: true, 
+  withCredentials: true,
 });
 
 // Request interceptor
@@ -11,9 +11,8 @@ api.interceptors.request.use((config) => {
     return config;
   }
 
-  const token = typeof window !== "undefined" 
-    ? localStorage.getItem("token") 
-    : null;
+  const token =
+    typeof window !== "undefined" ? localStorage.getItem("token") : null;
 
   if (token) {
     config.headers.Authorization = `Bearer ${token}`;
@@ -26,12 +25,22 @@ api.interceptors.request.use((config) => {
 api.interceptors.response.use(
   (res) => res,
   (error) => {
-    // Global error handling
-    if (error.response?.status === 401) {
+    const status = error.response?.status;
+    const message =
+      error.response?.data?.message || error.response?.data?.error;
+
+    if (status === 401) {
       console.log("Unauthorized");
+
+      if (message?.startsWith("Token expired")) {
+        if (typeof window !== "undefined") {
+          window.location.href = "/login";
+        }
+      }
     }
+
     return Promise.reject(error);
-  }
+  },
 );
 
 export default api;

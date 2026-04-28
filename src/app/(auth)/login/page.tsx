@@ -45,12 +45,10 @@ const Page = (): React.ReactElement => {
 
     try {
       const res = await login(values);
-      console.log("Login response:", res);
+      console.log("Login response:", res.data);
 
       if (res.status === 200) {
-        // Store user as JSON string in localStorage
         localStorage.setItem("token", res.data.data.authData.token);
-        // login(res.data.user);
 
         toast.success(res.data?.message || "Login successful!");
 
