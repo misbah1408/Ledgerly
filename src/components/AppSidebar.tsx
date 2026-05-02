@@ -22,7 +22,6 @@ import {
   ShoppingCart,
   FileText,
   ChevronDown,
-  ChevronRight,
   Handbag,
   Plus,
 } from "lucide-react";
@@ -139,16 +138,14 @@ export function AppSidebar() {
             </Collapsible>
 
             {/* cash & bank */}
-            <Collapsible className="group/collapsible">
-              <SidebarMenuItem>
-                <CollapsibleTrigger asChild>
-                  <SidebarMenuButton className="text-[16px]">
-                    <Users className="mr-2 h-4 w-4" />
-                    Cash & Bank
-                  </SidebarMenuButton>
-                </CollapsibleTrigger>
-              </SidebarMenuItem>
-            </Collapsible>
+            <SidebarMenuItem>
+              <SidebarMenuButton asChild className="text-[16px]">
+                <Link href="/dashboard/ledger">
+                  <Home className="mr-2 h-4 w-4" />
+                  Cash & Bank
+                </Link>
+              </SidebarMenuButton>
+            </SidebarMenuItem>
 
             {/* Purchases & Expenses */}
             <SidebarMenuItem>

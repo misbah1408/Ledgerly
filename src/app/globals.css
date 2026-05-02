@@ -81,6 +81,7 @@
   --sidebar-accent-foreground: oklch(0.205 0 0);
   --sidebar-border: oklch(0.922 0 0);
   --sidebar-ring: oklch(0.708 0 0);
+  --sidebar-font-size: 1rem; 
 }
 
 .dark {
@@ -127,4 +128,41 @@
   html {
     @apply font-sans;
   }
+}
+
+.sidebar {
+  font-size: var(--sidebar-font-size);
+}
+
+/* Target the whole scrollbar */
+::-webkit-scrollbar {
+  width: 7px;      /* width of the scrollbar */
+  height: 7px;
+}
+
+/* Hide the arrows (buttons) */
+::-webkit-scrollbar-button {
+  display: none;
+}
+
+/* Style the draggable bar (thumb) */
+::-webkit-scrollbar-thumb {
+  background-color: #a4a4a4a9;  /* color of the thumb */
+  border-radius: 6px;      /* rounded edges */
+}
+
+/* Optional: style the track (background of scrollbar) */
+::-webkit-scrollbar-track {
+  background-color: #f1f1f10e;
+  border-radius: 6px;      /* rounded edges */
+}
+
+input[type="number"]::-webkit-outer-spin-button,
+input[type="number"]::-webkit-inner-spin-button {
+  -webkit-appearance: none;
+  margin: 0;
+}
+
+input[type="number"] {
+  -moz-appearance: textfield;
 }
